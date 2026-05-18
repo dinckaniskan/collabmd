@@ -4,6 +4,7 @@ import {
   AUTH_STRATEGY_NONE,
   AUTH_STRATEGY_OIDC,
   AUTH_STRATEGY_PASSWORD,
+  OIDC_PROVIDER_AZURE,
   OIDC_PROVIDER_GOOGLE,
 } from './auth-constants.js';
 
@@ -118,10 +119,10 @@ export function isOidcUserAllowed(oidcConfig, email) {
   return {
     allowed: false,
     error: allowedEmails.length > 0 && allowedDomains.length > 0
-      ? 'This Google account is not in the allowed email or domain list.'
+      ? 'This account is not in the allowed email or domain list.'
       : allowedEmails.length > 0
-        ? 'This Google account is not in the allowed email list.'
-        : 'This Google account is not in an allowed domain.',
+        ? 'This account is not in the allowed email list.'
+        : 'This account is not in an allowed domain.',
   };
 }
 
@@ -181,6 +182,18 @@ export function createSessionCookieOptions(expiresAt) {
   };
 }
 
+export function oidcProviderLabel(provider) {
+  if (provider === OIDC_PROVIDER_GOOGLE) {
+    return 'Google';
+  }
+
+  if (provider === OIDC_PROVIDER_AZURE) {
+    return 'Microsoft';
+  }
+
+  return 'OIDC';
+}
+
 export function buildClientConfig(authConfig, { basePath = '' } = {}) {
   const loginEndpoint = prependBasePath(basePath, '/api/auth/oidc/login');
   const sessionEndpoint = prependBasePath(basePath, '/api/auth/session');
@@ -210,15 +223,18 @@ export function buildClientConfig(authConfig, { basePath = '' } = {}) {
     };
   }
 
+  const provider = authConfig.oidc?.provider ?? OIDC_PROVIDER_GOOGLE;
+  const providerLabel = oidcProviderLabel(provider);
+
   return {
     enabled: true,
     implemented: true,
     loginEndpoint,
-    provider: OIDC_PROVIDER_GOOGLE,
+    provider,
     requiresLogin: true,
     sessionEndpoint,
     statusEndpoint,
     strategy: AUTH_STRATEGY_OIDC,
-    submitLabel: 'Continue with Google',
+    submitLabel: `Continue with ${providerLabel}`,
   };
 }

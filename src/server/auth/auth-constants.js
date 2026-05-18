@@ -12,6 +12,8 @@ export const SUPPORTED_AUTH_STRATEGIES = new Set([
 
 export const OIDC_FLOW_TTL_MS = 10 * 60 * 1000;
 export const OIDC_PROVIDER_GOOGLE = 'google';
+export const OIDC_PROVIDER_AZURE = 'azure';
+export const SUPPORTED_OIDC_PROVIDERS = new Set([OIDC_PROVIDER_GOOGLE, OIDC_PROVIDER_AZURE]);
 
 export function createRandomAuthPassword(length = 18) {
   const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789';

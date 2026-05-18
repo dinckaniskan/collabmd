@@ -24,3 +24,5 @@ playwright-report/
 test-results/
 *vault*/
 .codex/
+
+.DS_Store

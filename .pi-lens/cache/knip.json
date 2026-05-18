@@ -1,0 +1,1002 @@
+{
+  "success": true,
+  "issues": [
+    {
+      "type": "file",
+      "name": "src/client/drawio-editor.js",
+      "file": "src/client/drawio-editor.js"
+    },
+    {
+      "type": "file",
+      "name": "src/client/excalidraw-editor.js",
+      "file": "src/client/excalidraw-editor.js"
+    },
+    {
+      "type": "file",
+      "name": "src/client/excalidraw-mermaid-stub.js",
+      "file": "src/client/excalidraw-mermaid-stub.js"
+    },
+    {
+      "type": "file",
+      "name": "src/client/app/drawio-editor-entry.js",
+      "file": "src/client/app/drawio-editor-entry.js"
+    },
+    {
+      "type": "file",
+      "name": "src/client/app/excalidraw-editor-entry.js",
+      "file": "src/client/app/excalidraw-editor-entry.js"
+    },
+    {
+      "type": "file",
+      "name": "src/client/app/export-document-entry.js",
+      "file": "src/client/app/export-document-entry.js"
+    },
+    {
+      "type": "file",
+      "name": "src/client/export/export-page.js",
+      "file": "src/client/export/export-page.js"
+    },
+    {
+      "type": "file",
+      "name": "src/client/infrastructure/drawio-lease-client.js",
+      "file": "src/client/infrastructure/drawio-lease-client.js"
+    },
+    {
+      "type": "file",
+      "name": "src/server/domain/git-service.js",
+      "file": "src/server/domain/git-service.js"
+    },
+    {
+      "type": "file",
+      "name": "src/server/domain/plantuml-renderer.js",
+      "file": "src/server/domain/plantuml-renderer.js"
+    },
+    {
+      "type": "dependency",
+      "name": "archiver",
+      "file": "package.json",
+      "line": 80
+    },
+    {
+      "type": "devDependency",
+      "name": "@vitest/browser",
+      "file": "package.json",
+      "line": 105
+    },
+    {
+      "type": "unlisted",
+      "name": "postcss",
+      "file": "tests/node/style-system-guardrails.test.js",
+      "line": 5
+    },
+    {
+      "type": "export",
+      "name": "resolveConfiguredVaultDir",
+      "file": "src/server/config/env.js",
+      "line": 182
+    },
+    {
+      "type": "export",
+      "name": "E2E_USER_NAME",
+      "file": "tests/e2e/helpers/app-fixture.js",
+      "line": 9
+    },
+    {
+      "type": "export",
+      "name": "clearCollaborationSidecars",
+      "file": "tests/e2e/helpers/app-fixture.js",
+      "line": 314
+    },
+    {
+      "type": "export",
+      "name": "prepareExportSnapshot",
+      "file": "src/client/export/export-pipeline.js",
+      "line": 1064
+    },
+    {
+      "type": "export",
+      "name": "docxAdapter",
+      "file": "src/client/export/export-pipeline.js",
+      "line": 1417
+    },
+    {
+      "type": "export",
+      "name": "printPdfAdapter",
+      "file": "src/client/export/export-pipeline.js",
+      "line": 1446
+    },
+    {
+      "type": "export",
+      "name": "runExportAdapter",
+      "file": "src/client/export/export-pipeline.js",
+      "line": 1489
+    },
+    {
+      "type": "export",
+      "name": "postExportPageMessage",
+      "file": "src/client/export/export-pipeline.js",
+      "line": 1498
+    },
+    {
+      "type": "export",
+      "name": "waitForBootstrapPayload",
+      "file": "src/client/export/export-pipeline.js",
+      "line": 1510
+    },
+    {
+      "type": "export",
+      "name": "extractBuildId",
+      "file": "src/client/infrastructure/app-version-monitor.js",
+      "line": 114
+    },
+    {
+      "type": "export",
+      "name": "COMMENT_EXCERPT_MAX_LENGTH",
+      "file": "src/domain/comment-threads.js",
+      "line": 4
+    },
+    {
+      "type": "export",
+      "name": "COMMENT_ANCHOR_QUOTE_MAX_LENGTH",
+      "file": "src/domain/comment-threads.js",
+      "line": 5
+    },
+    {
+      "type": "export",
+      "name": "COMMENT_REACTION_EMOJI_MAX_LENGTH",
+      "file": "src/domain/comment-threads.js",
+      "line": 6
+    },
+    {
+      "type": "export",
+      "name": "serializeCommentThread",
+      "file": "src/domain/comment-threads.js",
+      "line": 257
+    },
+    {
+      "type": "export",
+      "name": "EXCALIDRAW_ROOM_SCHEMA_VERSION",
+      "file": "src/domain/excalidraw-room-codec.js",
+      "line": 11
+    },
+    {
+      "type": "export",
+      "name": "EXCALIDRAW_ROOM_TEXT_KEY",
+      "file": "src/domain/excalidraw-room-codec.js",
+      "line": 12
+    },
+    {
+      "type": "export",
+      "name": "EXCALIDRAW_SCHEMA_VERSION_KEY",
+      "file": "src/domain/excalidraw-room-codec.js",
+      "line": 13
+    },
+    {
+      "type": "export",
+      "name": "CommentsPanel",
+      "file": "src/client/presentation/comments-panel.js",
+      "line": 81
+    },
+    {
+      "type": "export",
+      "name": "DRAWIO_FILE_EXTENSION",
+      "file": "src/domain/drawio-room.js",
+      "line": 11
+    },
+    {
+      "type": "export",
+      "name": "DRAWIO_LEASE_HEARTBEAT_MS",
+      "file": "src/domain/drawio-room.js",
+      "line": 12
+    },
+    {
+      "type": "export",
+      "name": "DRAWIO_LEASE_ROOM_PREFIX",
+      "file": "src/domain/drawio-room.js",
+      "line": 13
+    },
+    {
+      "type": "export",
+      "name": "DRAWIO_LEASE_STALE_MS",
+      "file": "src/domain/drawio-room.js",
+      "line": 14
+    },
+    {
+      "type": "export",
+      "name": "USER_COLOR_PALETTE",
+      "file": "src/client/domain/excalidraw-collaboration.js",
+      "line": 3
+    },
+    {
+      "type": "export",
+      "name": "hashString",
+      "file": "src/client/domain/excalidraw-collaboration.js",
+      "line": 9
+    },
+    {
+      "type": "export",
+      "name": "generatePeerId",
+      "file": "src/client/domain/excalidraw-collaboration.js",
+      "line": 19
+    },
+    {
+      "type": "export",
+      "name": "pickFallbackColor",
+      "file": "src/client/domain/excalidraw-collaboration.js",
+      "line": 25
+    },
+    {
+      "type": "export",
+      "name": "ensureColorLight",
+      "file": "src/client/domain/excalidraw-collaboration.js",
+      "line": 29
+    },
+    {
+      "type": "export",
+      "name": "resolveLocalAwarenessUser",
+      "file": "src/client/domain/excalidraw-collaboration.js",
+      "line": 41
+    },
+    {
+      "type": "export",
+      "name": "LOBBY_CHAT_MAX_MESSAGES",
+      "file": "src/client/infrastructure/lobby-presence.js",
+      "line": 10
+    },
+    {
+      "type": "export",
+      "name": "LARGE_DOCUMENT_MERMAID_THRESHOLD",
+      "file": "src/client/application/preview-render-profile.js",
+      "line": 2
+    },
+    {
+      "type": "export",
+      "name": "LARGE_DOCUMENT_EXCALIDRAW_THRESHOLD",
+      "file": "src/client/application/preview-render-profile.js",
+      "line": 3
+    },
+    {
+      "type": "export",
+      "name": "LARGE_DOCUMENT_DRAWIO_THRESHOLD",
+      "file": "src/client/application/preview-render-profile.js",
+      "line": 4
+    },
+    {
+      "type": "export",
+      "name": "LARGE_DOCUMENT_PLANTUML_THRESHOLD",
+      "file": "src/client/application/preview-render-profile.js",
+      "line": 5
+    },
+    {
+      "type": "export",
+      "name": "getAnchorKind",
+      "file": "src/client/presentation/comment-ui/comment-ui-shared.js",
+      "line": 32
+    },
+    {
+      "type": "export",
+      "name": "parseLineNumber",
+      "file": "src/client/presentation/comment-ui/comment-ui-shared.js",
+      "line": 88
+    },
+    {
+      "type": "export",
+      "name": "getLatestMessage",
+      "file": "src/client/presentation/comment-ui/comment-ui-shared.js",
+      "line": 93
+    },
+    {
+      "type": "export",
+      "name": "createNormalizedTextIndex",
+      "file": "src/client/presentation/comment-ui/comment-ui-shared.js",
+      "line": 158
+    },
+    {
+      "type": "export",
+      "name": "BASE_FILE_EXTENSION",
+      "file": "src/domain/file-kind.js",
+      "line": 32
+    },
+    {
+      "type": "export",
+      "name": "DIAGRAM_FILE_EXTENSIONS",
+      "file": "src/domain/file-kind.js",
+      "line": 33
+    },
+    {
+      "type": "export",
+      "name": "DRAWIO_FILE_EXTENSION",
+      "file": "src/domain/file-kind.js",
+      "line": 34
+    },
+    {
+      "type": "export",
+      "name": "EXCALIDRAW_FILE_EXTENSION",
+      "file": "src/domain/file-kind.js",
+      "line": 35
+    },
+    {
+      "type": "export",
+      "name": "IMAGE_ATTACHMENT_EXTENSIONS",
+      "file": "src/domain/file-kind.js",
+      "line": 36
+    },
+    {
+      "type": "export",
+      "name": "MARKDOWN_FILE_EXTENSIONS",
+      "file": "src/domain/file-kind.js",
+      "line": 37
+    },
+    {
+      "type": "export",
+      "name": "MERMAID_FILE_EXTENSIONS",
+      "file": "src/domain/file-kind.js",
+      "line": 38
+    },
+    {
+      "type": "export",
+      "name": "PLANTUML_FILE_EXTENSIONS",
+      "file": "src/domain/file-kind.js",
+      "line": 39
+    },
+    {
+      "type": "export",
+      "name": "VAULT_FILE_EXTENSIONS",
+      "file": "src/domain/file-kind.js",
+      "line": 40
+    },
+    {
+      "type": "export",
+      "name": "sanitizeSvgElement",
+      "file": "src/client/application/preview-diagram-utils.js",
+      "line": 181
+    },
+    {
+      "type": "export",
+      "name": "getLocalPeerId",
+      "file": "src/client/domain/room.js",
+      "line": 35
+    },
+    {
+      "type": "export",
+      "name": "getLocalUserId",
+      "file": "src/client/domain/room.js",
+      "line": 42
+    },
+    {
+      "type": "export",
+      "name": "prependBasePath",
+      "file": "src/server/auth/auth-common.js",
+      "line": 36
+    },
+    {
+      "type": "export",
+      "name": "getDefaultReturnTo",
+      "file": "src/server/auth/auth-common.js",
+      "line": 52
+    },
+    {
+      "type": "export",
+      "name": "normalizeEmailAddress",
+      "file": "src/server/auth/auth-common.js",
+      "line": 87
+    },
+    {
+      "type": "export",
+      "name": "getEmailDomain",
+      "file": "src/server/auth/auth-common.js",
+      "line": 91
+    },
+    {
+      "type": "export",
+      "name": "normalizeReferenceTargetKey",
+      "file": "src/server/domain/markdown-reference-extractor.js",
+      "line": 127
+    },
+    {
+      "type": "export",
+      "name": "collectWorkspaceStateStats",
+      "file": "src/server/domain/workspace-state.js",
+      "line": 7
+    },
+    {
+      "type": "export",
+      "name": "IGNORED_DIRECTORIES",
+      "file": "src/server/infrastructure/persistence/path-utils.js",
+      "line": 5
+    },
+    {
+      "type": "export",
+      "name": "VAULT_FILE_PATH_REQUIREMENT",
+      "file": "src/server/infrastructure/persistence/path-utils.js",
+      "line": 6
+    },
+    {
+      "type": "export",
+      "name": "INVALID_VAULT_FILE_PATH_ERROR",
+      "file": "src/server/infrastructure/persistence/path-utils.js",
+      "line": 7
+    },
+    {
+      "type": "export",
+      "name": "INVALID_DIRECTORY_PATH_ERROR",
+      "file": "src/server/infrastructure/persistence/path-utils.js",
+      "line": 8
+    },
+    {
+      "type": "export",
+      "name": "resolveVaultDirectoryPath",
+      "file": "src/server/infrastructure/persistence/path-utils.js",
+      "line": 52
+    },
+    {
+      "type": "export",
+      "name": "resolveVaultDirectoryRenamePaths",
+      "file": "src/server/infrastructure/persistence/path-utils.js",
+      "line": 61
+    },
+    {
+      "type": "export",
+      "name": "resolveVaultRenamePaths",
+      "file": "src/server/infrastructure/persistence/path-utils.js",
+      "line": 72
+    },
+    {
+      "type": "export",
+      "name": "createEmptySummary",
+      "file": "src/server/infrastructure/git/responses.js",
+      "line": 28
+    },
+    {
+      "type": "export",
+      "name": "REQUEST_BODY_LIMIT_BYTES",
+      "file": "src/server/infrastructure/http/request-body.js",
+      "line": 3
+    },
+    {
+      "type": "export",
+      "name": "readRequestBody",
+      "file": "src/server/infrastructure/http/request-body.js",
+      "line": 48
+    },
+    {
+      "type": "export",
+      "name": "readBinaryRequestBody",
+      "file": "src/server/infrastructure/http/request-body.js",
+      "line": 53
+    },
+    {
+      "type": "export",
+      "name": "sendStreamResponse",
+      "file": "src/server/infrastructure/http/http-response.js",
+      "line": 182
+    },
+    {
+      "type": "export",
+      "name": "SidecarStore",
+      "file": "src/server/infrastructure/persistence/sidecar-store.js",
+      "line": 35
+    },
+    {
+      "type": "export",
+      "name": "BacklinksApiClient",
+      "file": "src/client/infrastructure/backlinks-api-client.js",
+      "line": 3
+    },
+    {
+      "type": "export",
+      "name": "PlantUmlApiClient",
+      "file": "src/client/infrastructure/plantuml-api-client.js",
+      "line": 3
+    },
+    {
+      "type": "export",
+      "name": "createPlantUmlApiHandler",
+      "file": "src/server/infrastructure/http/create-plantuml-api-handler.js",
+      "line": 5
+    }
+  ],
+  "unusedExports": [
+    {
+      "type": "export",
+      "name": "resolveConfiguredVaultDir",
+      "file": "src/server/config/env.js",
+      "line": 182
+    },
+    {
+      "type": "export",
+      "name": "E2E_USER_NAME",
+      "file": "tests/e2e/helpers/app-fixture.js",
+      "line": 9
+    },
+    {
+      "type": "export",
+      "name": "clearCollaborationSidecars",
+      "file": "tests/e2e/helpers/app-fixture.js",
+      "line": 314
+    },
+    {
+      "type": "export",
+      "name": "prepareExportSnapshot",
+      "file": "src/client/export/export-pipeline.js",
+      "line": 1064
+    },
+    {
+      "type": "export",
+      "name": "docxAdapter",
+      "file": "src/client/export/export-pipeline.js",
+      "line": 1417
+    },
+    {
+      "type": "export",
+      "name": "printPdfAdapter",
+      "file": "src/client/export/export-pipeline.js",
+      "line": 1446
+    },
+    {
+      "type": "export",
+      "name": "runExportAdapter",
+      "file": "src/client/export/export-pipeline.js",
+      "line": 1489
+    },
+    {
+      "type": "export",
+      "name": "postExportPageMessage",
+      "file": "src/client/export/export-pipeline.js",
+      "line": 1498
+    },
+    {
+      "type": "export",
+      "name": "waitForBootstrapPayload",
+      "file": "src/client/export/export-pipeline.js",
+      "line": 1510
+    },
+    {
+      "type": "export",
+      "name": "extractBuildId",
+      "file": "src/client/infrastructure/app-version-monitor.js",
+      "line": 114
+    },
+    {
+      "type": "export",
+      "name": "COMMENT_EXCERPT_MAX_LENGTH",
+      "file": "src/domain/comment-threads.js",
+      "line": 4
+    },
+    {
+      "type": "export",
+      "name": "COMMENT_ANCHOR_QUOTE_MAX_LENGTH",
+      "file": "src/domain/comment-threads.js",
+      "line": 5
+    },
+    {
+      "type": "export",
+      "name": "COMMENT_REACTION_EMOJI_MAX_LENGTH",
+      "file": "src/domain/comment-threads.js",
+      "line": 6
+    },
+    {
+      "type": "export",
+      "name": "serializeCommentThread",
+      "file": "src/domain/comment-threads.js",
+      "line": 257
+    },
+    {
+      "type": "export",
+      "name": "EXCALIDRAW_ROOM_SCHEMA_VERSION",
+      "file": "src/domain/excalidraw-room-codec.js",
+      "line": 11
+    },
+    {
+      "type": "export",
+      "name": "EXCALIDRAW_ROOM_TEXT_KEY",
+      "file": "src/domain/excalidraw-room-codec.js",
+      "line": 12
+    },
+    {
+      "type": "export",
+      "name": "EXCALIDRAW_SCHEMA_VERSION_KEY",
+      "file": "src/domain/excalidraw-room-codec.js",
+      "line": 13
+    },
+    {
+      "type": "export",
+      "name": "CommentsPanel",
+      "file": "src/client/presentation/comments-panel.js",
+      "line": 81
+    },
+    {
+      "type": "export",
+      "name": "DRAWIO_FILE_EXTENSION",
+      "file": "src/domain/drawio-room.js",
+      "line": 11
+    },
+    {
+      "type": "export",
+      "name": "DRAWIO_LEASE_HEARTBEAT_MS",
+      "file": "src/domain/drawio-room.js",
+      "line": 12
+    },
+    {
+      "type": "export",
+      "name": "DRAWIO_LEASE_ROOM_PREFIX",
+      "file": "src/domain/drawio-room.js",
+      "line": 13
+    },
+    {
+      "type": "export",
+      "name": "DRAWIO_LEASE_STALE_MS",
+      "file": "src/domain/drawio-room.js",
+      "line": 14
+    },
+    {
+      "type": "export",
+      "name": "USER_COLOR_PALETTE",
+      "file": "src/client/domain/excalidraw-collaboration.js",
+      "line": 3
+    },
+    {
+      "type": "export",
+      "name": "hashString",
+      "file": "src/client/domain/excalidraw-collaboration.js",
+      "line": 9
+    },
+    {
+      "type": "export",
+      "name": "generatePeerId",
+      "file": "src/client/domain/excalidraw-collaboration.js",
+      "line": 19
+    },
+    {
+      "type": "export",
+      "name": "pickFallbackColor",
+      "file": "src/client/domain/excalidraw-collaboration.js",
+      "line": 25
+    },
+    {
+      "type": "export",
+      "name": "ensureColorLight",
+      "file": "src/client/domain/excalidraw-collaboration.js",
+      "line": 29
+    },
+    {
+      "type": "export",
+      "name": "resolveLocalAwarenessUser",
+      "file": "src/client/domain/excalidraw-collaboration.js",
+      "line": 41
+    },
+    {
+      "type": "export",
+      "name": "LOBBY_CHAT_MAX_MESSAGES",
+      "file": "src/client/infrastructure/lobby-presence.js",
+      "line": 10
+    },
+    {
+      "type": "export",
+      "name": "LARGE_DOCUMENT_MERMAID_THRESHOLD",
+      "file": "src/client/application/preview-render-profile.js",
+      "line": 2
+    },
+    {
+      "type": "export",
+      "name": "LARGE_DOCUMENT_EXCALIDRAW_THRESHOLD",
+      "file": "src/client/application/preview-render-profile.js",
+      "line": 3
+    },
+    {
+      "type": "export",
+      "name": "LARGE_DOCUMENT_DRAWIO_THRESHOLD",
+      "file": "src/client/application/preview-render-profile.js",
+      "line": 4
+    },
+    {
+      "type": "export",
+      "name": "LARGE_DOCUMENT_PLANTUML_THRESHOLD",
+      "file": "src/client/application/preview-render-profile.js",
+      "line": 5
+    },
+    {
+      "type": "export",
+      "name": "getAnchorKind",
+      "file": "src/client/presentation/comment-ui/comment-ui-shared.js",
+      "line": 32
+    },
+    {
+      "type": "export",
+      "name": "parseLineNumber",
+      "file": "src/client/presentation/comment-ui/comment-ui-shared.js",
+      "line": 88
+    },
+    {
+      "type": "export",
+      "name": "getLatestMessage",
+      "file": "src/client/presentation/comment-ui/comment-ui-shared.js",
+      "line": 93
+    },
+    {
+      "type": "export",
+      "name": "createNormalizedTextIndex",
+      "file": "src/client/presentation/comment-ui/comment-ui-shared.js",
+      "line": 158
+    },
+    {
+      "type": "export",
+      "name": "BASE_FILE_EXTENSION",
+      "file": "src/domain/file-kind.js",
+      "line": 32
+    },
+    {
+      "type": "export",
+      "name": "DIAGRAM_FILE_EXTENSIONS",
+      "file": "src/domain/file-kind.js",
+      "line": 33
+    },
+    {
+      "type": "export",
+      "name": "DRAWIO_FILE_EXTENSION",
+      "file": "src/domain/file-kind.js",
+      "line": 34
+    },
+    {
+      "type": "export",
+      "name": "EXCALIDRAW_FILE_EXTENSION",
+      "file": "src/domain/file-kind.js",
+      "line": 35
+    },
+    {
+      "type": "export",
+      "name": "IMAGE_ATTACHMENT_EXTENSIONS",
+      "file": "src/domain/file-kind.js",
+      "line": 36
+    },
+    {
+      "type": "export",
+      "name": "MARKDOWN_FILE_EXTENSIONS",
+      "file": "src/domain/file-kind.js",
+      "line": 37
+    },
+    {
+      "type": "export",
+      "name": "MERMAID_FILE_EXTENSIONS",
+      "file": "src/domain/file-kind.js",
+      "line": 38
+    },
+    {
+      "type": "export",
+      "name": "PLANTUML_FILE_EXTENSIONS",
+      "file": "src/domain/file-kind.js",
+      "line": 39
+    },
+    {
+      "type": "export",
+      "name": "VAULT_FILE_EXTENSIONS",
+      "file": "src/domain/file-kind.js",
+      "line": 40
+    },
+    {
+      "type": "export",
+      "name": "sanitizeSvgElement",
+      "file": "src/client/application/preview-diagram-utils.js",
+      "line": 181
+    },
+    {
+      "type": "export",
+      "name": "getLocalPeerId",
+      "file": "src/client/domain/room.js",
+      "line": 35
+    },
+    {
+      "type": "export",
+      "name": "getLocalUserId",
+      "file": "src/client/domain/room.js",
+      "line": 42
+    },
+    {
+      "type": "export",
+      "name": "prependBasePath",
+      "file": "src/server/auth/auth-common.js",
+      "line": 36
+    },
+    {
+      "type": "export",
+      "name": "getDefaultReturnTo",
+      "file": "src/server/auth/auth-common.js",
+      "line": 52
+    },
+    {
+      "type": "export",
+      "name": "normalizeEmailAddress",
+      "file": "src/server/auth/auth-common.js",
+      "line": 87
+    },
+    {
+      "type": "export",
+      "name": "getEmailDomain",
+      "file": "src/server/auth/auth-common.js",
+      "line": 91
+    },
+    {
+      "type": "export",
+      "name": "normalizeReferenceTargetKey",
+      "file": "src/server/domain/markdown-reference-extractor.js",
+      "line": 127
+    },
+    {
+      "type": "export",
+      "name": "collectWorkspaceStateStats",
+      "file": "src/server/domain/workspace-state.js",
+      "line": 7
+    },
+    {
+      "type": "export",
+      "name": "IGNORED_DIRECTORIES",
+      "file": "src/server/infrastructure/persistence/path-utils.js",
+      "line": 5
+    },
+    {
+      "type": "export",
+      "name": "VAULT_FILE_PATH_REQUIREMENT",
+      "file": "src/server/infrastructure/persistence/path-utils.js",
+      "line": 6
+    },
+    {
+      "type": "export",
+      "name": "INVALID_VAULT_FILE_PATH_ERROR",
+      "file": "src/server/infrastructure/persistence/path-utils.js",
+      "line": 7
+    },
+    {
+      "type": "export",
+      "name": "INVALID_DIRECTORY_PATH_ERROR",
+      "file": "src/server/infrastructure/persistence/path-utils.js",
+      "line": 8
+    },
+    {
+      "type": "export",
+      "name": "resolveVaultDirectoryPath",
+      "file": "src/server/infrastructure/persistence/path-utils.js",
+      "line": 52
+    },
+    {
+      "type": "export",
+      "name": "resolveVaultDirectoryRenamePaths",
+      "file": "src/server/infrastructure/persistence/path-utils.js",
+      "line": 61
+    },
+    {
+      "type": "export",
+      "name": "resolveVaultRenamePaths",
+      "file": "src/server/infrastructure/persistence/path-utils.js",
+      "line": 72
+    },
+    {
+      "type": "export",
+      "name": "createEmptySummary",
+      "file": "src/server/infrastructure/git/responses.js",
+      "line": 28
+    },
+    {
+      "type": "export",
+      "name": "REQUEST_BODY_LIMIT_BYTES",
+      "file": "src/server/infrastructure/http/request-body.js",
+      "line": 3
+    },
+    {
+      "type": "export",
+      "name": "readRequestBody",
+      "file": "src/server/infrastructure/http/request-body.js",
+      "line": 48
+    },
+    {
+      "type": "export",
+      "name": "readBinaryRequestBody",
+      "file": "src/server/infrastructure/http/request-body.js",
+      "line": 53
+    },
+    {
+      "type": "export",
+      "name": "sendStreamResponse",
+      "file": "src/server/infrastructure/http/http-response.js",
+      "line": 182
+    },
+    {
+      "type": "export",
+      "name": "SidecarStore",
+      "file": "src/server/infrastructure/persistence/sidecar-store.js",
+      "line": 35
+    },
+    {
+      "type": "export",
+      "name": "BacklinksApiClient",
+      "file": "src/client/infrastructure/backlinks-api-client.js",
+      "line": 3
+    },
+    {
+      "type": "export",
+      "name": "PlantUmlApiClient",
+      "file": "src/client/infrastructure/plantuml-api-client.js",
+      "line": 3
+    },
+    {
+      "type": "export",
+      "name": "createPlantUmlApiHandler",
+      "file": "src/server/infrastructure/http/create-plantuml-api-handler.js",
+      "line": 5
+    }
+  ],
+  "unusedFiles": [
+    {
+      "type": "file",
+      "name": "src/client/drawio-editor.js",
+      "file": "src/client/drawio-editor.js"
+    },
+    {
+      "type": "file",
+      "name": "src/client/excalidraw-editor.js",
+      "file": "src/client/excalidraw-editor.js"
+    },
+    {
+      "type": "file",
+      "name": "src/client/excalidraw-mermaid-stub.js",
+      "file": "src/client/excalidraw-mermaid-stub.js"
+    },
+    {
+      "type": "file",
+      "name": "src/client/app/drawio-editor-entry.js",
+      "file": "src/client/app/drawio-editor-entry.js"
+    },
+    {
+      "type": "file",
+      "name": "src/client/app/excalidraw-editor-entry.js",
+      "file": "src/client/app/excalidraw-editor-entry.js"
+    },
+    {
+      "type": "file",
+      "name": "src/client/app/export-document-entry.js",
+      "file": "src/client/app/export-document-entry.js"
+    },
+    {
+      "type": "file",
+      "name": "src/client/export/export-page.js",
+      "file": "src/client/export/export-page.js"
+    },
+    {
+      "type": "file",
+      "name": "src/client/infrastructure/drawio-lease-client.js",
+      "file": "src/client/infrastructure/drawio-lease-client.js"
+    },
+    {
+      "type": "file",
+      "name": "src/server/domain/git-service.js",
+      "file": "src/server/domain/git-service.js"
+    },
+    {
+      "type": "file",
+      "name": "src/server/domain/plantuml-renderer.js",
+      "file": "src/server/domain/plantuml-renderer.js"
+    }
+  ],
+  "unusedDeps": [
+    {
+      "type": "dependency",
+      "name": "archiver",
+      "file": "package.json",
+      "line": 80
+    },
+    {
+      "type": "devDependency",
+      "name": "@vitest/browser",
+      "file": "package.json",
+      "line": 105
+    }
+  ],
+  "unlistedDeps": [
+    {
+      "type": "unlisted",
+      "name": "postcss",
+      "file": "tests/node/style-system-guardrails.test.js",
+      "line": 5
+    }
+  ],
+  "summary": "Found 84 issues"
+}

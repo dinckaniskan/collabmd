@@ -21,6 +21,8 @@ function withAuthEnvCleared(fn) {
   const previousOidcIssuerUrl = process.env.AUTH_OIDC_ISSUER_URL;
   const previousOidcAllowedEmails = process.env.AUTH_OIDC_ALLOWED_EMAILS;
   const previousOidcAllowedDomains = process.env.AUTH_OIDC_ALLOWED_DOMAINS;
+  const previousOidcProvider = process.env.AUTH_OIDC_PROVIDER;
+  const previousOidcTenantId = process.env.AUTH_OIDC_TENANT_ID;
   const previousGitRepoUrl = process.env.COLLABMD_GIT_REPO_URL;
   const previousGitPrivateKeyFile = process.env.COLLABMD_GIT_SSH_PRIVATE_KEY_FILE;
   const previousGitPrivateKeyBase64 = process.env.COLLABMD_GIT_SSH_PRIVATE_KEY_B64;
@@ -41,6 +43,8 @@ function withAuthEnvCleared(fn) {
   delete process.env.AUTH_OIDC_ISSUER_URL;
   delete process.env.AUTH_OIDC_ALLOWED_EMAILS;
   delete process.env.AUTH_OIDC_ALLOWED_DOMAINS;
+  delete process.env.AUTH_OIDC_PROVIDER;
+  delete process.env.AUTH_OIDC_TENANT_ID;
   delete process.env.COLLABMD_GIT_REPO_URL;
   delete process.env.COLLABMD_GIT_SSH_PRIVATE_KEY_FILE;
   delete process.env.COLLABMD_GIT_SSH_PRIVATE_KEY_B64;
@@ -107,6 +111,18 @@ function withAuthEnvCleared(fn) {
       delete process.env.AUTH_OIDC_ALLOWED_DOMAINS;
     } else {
       process.env.AUTH_OIDC_ALLOWED_DOMAINS = previousOidcAllowedDomains;
+    }
+
+    if (previousOidcProvider === undefined) {
+      delete process.env.AUTH_OIDC_PROVIDER;
+    } else {
+      process.env.AUTH_OIDC_PROVIDER = previousOidcProvider;
+    }
+
+    if (previousOidcTenantId === undefined) {
+      delete process.env.AUTH_OIDC_TENANT_ID;
+    } else {
+      process.env.AUTH_OIDC_TENANT_ID = previousOidcTenantId;
     }
 
     if (previousGitRepoUrl === undefined) {
@@ -625,7 +641,7 @@ test('oidc auth rejects users outside the allowed email and domain lists', async
   }, new URL(`http://127.0.0.1:3000/api/auth/oidc/callback?code=test-code&state=${encodeURIComponent(flowPayload.state)}`));
 
   assert.equal(callbackResult.statusCode, 302);
-  assert.match(callbackResult.redirectTo, /auth_error=This\+Google\+account\+is\+not\+in\+the\+allowed\+email\+or\+domain\+list\./);
+  assert.match(callbackResult.redirectTo, /auth_error=This\+account\+is\+not\+in\+the\+allowed\+email\+or\+domain\+list\./);
 });
 
 test('oidc auth allows an exact email allowlist match outside the allowed domains', async (t) => {
@@ -764,4 +780,187 @@ test('loadConfig falls back to standard git author env for identity', () => with
 
   assert.equal(config.git.identity.name, 'Standard Author');
   assert.equal(config.git.identity.email, 'author@example.com');
+}));
+
+test('loadConfig configures Azure provider with correct issuer URL', () => withAuthEnvCleared(() => {
+  const config = loadConfig({
+    auth: {
+      oidc: {
+        clientId: 'test-client-id',
+        clientSecret: 'test-client-secret',
+        provider: 'azure',
+        publicBaseUrl: 'https://notes.example.com',
+        tenantId: 'test-tenant-id',
+      },
+      strategy: AUTH_STRATEGY_OIDC,
+    },
+    vaultDir: process.cwd(),
+  });
+
+  assert.equal(config.auth.oidc.provider, 'azure');
+  assert.equal(config.auth.oidc.issuer, 'https://login.microsoftonline.com/test-tenant-id/v2.0');
+  assert.equal(config.auth.oidc.tenantId, 'test-tenant-id');
+}));
+
+test('loadConfig azure provider requires tenant ID', () => withAuthEnvCleared(() => {
+  assert.throws(() => {
+    loadConfig({
+      auth: {
+        oidc: {
+          clientId: 'test-client-id',
+          clientSecret: 'test-client-secret',
+          provider: 'azure',
+          publicBaseUrl: 'https://notes.example.com',
+        },
+        strategy: AUTH_STRATEGY_OIDC,
+      },
+      vaultDir: process.cwd(),
+    });
+  }, /OIDC auth with Azure requires AUTH_OIDC_TENANT_ID/);
+}));
+
+test('loadConfig azure provider accepts explicit issuer override', () => withAuthEnvCleared(() => {
+  const config = loadConfig({
+    auth: {
+      oidc: {
+        clientId: 'test-client-id',
+        clientSecret: 'test-client-secret',
+        issuer: 'https://login.microsoftonline.de/custom-tenant/v2.0',
+        provider: 'azure',
+        publicBaseUrl: 'https://notes.example.com',
+        tenantId: 'test-tenant-id',
+      },
+      strategy: AUTH_STRATEGY_OIDC,
+    },
+    vaultDir: process.cwd(),
+  });
+
+  assert.equal(config.auth.oidc.issuer, 'https://login.microsoftonline.de/custom-tenant/v2.0');
+}));
+
+test('azure oidc auth exposes correct client config', () => withAuthEnvCleared(() => {
+  const config = loadConfig({
+    auth: {
+      oidc: {
+        clientId: 'test-client-id',
+        clientSecret: 'test-client-secret',
+        provider: 'azure',
+        publicBaseUrl: 'https://notes.example.com',
+        tenantId: 'test-tenant-id',
+      },
+      strategy: AUTH_STRATEGY_OIDC,
+    },
+    vaultDir: process.cwd(),
+  });
+  const authService = createAuthService(config);
+
+  assert.equal(authService.getClientConfig().strategy, AUTH_STRATEGY_OIDC);
+  assert.equal(authService.getClientConfig().provider, 'azure');
+  assert.equal(authService.getClientConfig().submitLabel, 'Continue with Microsoft');
+}));
+
+test('azure oidc auth does not add Google hosted-domain hint', async (t) => {
+  const issuer = await startFakeOidcIssuer();
+  t.after(() => issuer.close());
+
+  const config = loadConfig({
+    auth: {
+      oidc: {
+        allowedDomains: ['company.com'],
+        clientId: 'test-client-id',
+        clientSecret: 'test-client-secret',
+        issuer: issuer.issuer,
+        provider: 'azure',
+        publicBaseUrl: 'http://127.0.0.1:3000',
+        tenantId: 'test-tenant-id',
+      },
+      strategy: AUTH_STRATEGY_OIDC,
+    },
+    vaultDir: process.cwd(),
+  });
+  const authService = createAuthService(config);
+
+  const loginResult = await authService.beginOidcLogin(
+    { headers: {} },
+    new URL('http://127.0.0.1:3000/api/auth/oidc/login?returnTo=%2F'),
+  );
+  assert.equal(new URL(loginResult.redirectTo).searchParams.get('hd'), null);
+});
+
+test('azure oidc auth rejects users with provider-agnostic error message', async (t) => {
+  const issuer = await startFakeOidcIssuer();
+  t.after(() => issuer.close());
+
+  const config = loadConfig({
+    auth: {
+      oidc: {
+        allowedDomains: ['company.com'],
+        clientId: 'test-client-id',
+        clientSecret: 'test-client-secret',
+        issuer: issuer.issuer,
+        provider: 'azure',
+        publicBaseUrl: 'http://127.0.0.1:3000',
+        tenantId: 'test-tenant-id',
+      },
+      strategy: AUTH_STRATEGY_OIDC,
+    },
+    vaultDir: process.cwd(),
+  });
+  const authService = createAuthService(config);
+
+  const loginResult = await authService.beginOidcLogin(
+    { headers: {} },
+    new URL('http://127.0.0.1:3000/api/auth/oidc/login?returnTo=%2F'),
+  );
+  const flowPayload = decodeFlowCookiePayload(loginResult.setCookie);
+  issuer.setNextNonce(flowPayload.nonce);
+  issuer.setNextClaims({
+    email: 'person@outside.com',
+    name: 'Rejected User',
+  });
+
+  const callbackResult = await authService.completeOidcLogin({
+    headers: {
+      cookie: extractCookieHeader(loginResult.setCookie),
+    },
+  }, new URL(`http://127.0.0.1:3000/api/auth/oidc/callback?code=test-code&state=${encodeURIComponent(flowPayload.state)}`));
+
+  assert.equal(callbackResult.statusCode, 302);
+  assert.match(callbackResult.redirectTo, /auth_error=This\+account\+is\+not\+in\+an\+allowed\+domain/);
+  assert.equal(callbackResult.redirectTo.indexOf('Google'), -1);
+});
+
+test('loadConfig rejects unsupported OIDC providers', () => withAuthEnvCleared(() => {
+  assert.throws(() => {
+    loadConfig({
+      auth: {
+        oidc: {
+          clientId: 'test-client-id',
+          clientSecret: 'test-client-secret',
+          provider: 'okta',
+          publicBaseUrl: 'https://notes.example.com',
+        },
+        strategy: AUTH_STRATEGY_OIDC,
+      },
+      vaultDir: process.cwd(),
+    });
+  }, /Unsupported OIDC provider/);
+}));
+
+test('loadConfig azure multi-tenant uses common issuer', () => withAuthEnvCleared(() => {
+  const config = loadConfig({
+    auth: {
+      oidc: {
+        clientId: 'test-client-id',
+        clientSecret: 'test-client-secret',
+        provider: 'azure',
+        publicBaseUrl: 'https://notes.example.com',
+        tenantId: 'common',
+      },
+      strategy: AUTH_STRATEGY_OIDC,
+    },
+    vaultDir: process.cwd(),
+  });
+
+  assert.equal(config.auth.oidc.issuer, 'https://login.microsoftonline.com/common/v2.0');
 }));

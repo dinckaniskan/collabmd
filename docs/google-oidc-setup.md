@@ -91,11 +91,14 @@ Set these environment variables:
 
 ```bash
 AUTH_STRATEGY=oidc
+AUTH_OIDC_PROVIDER=google
 PUBLIC_BASE_URL=https://notes.example.com
 AUTH_OIDC_CLIENT_ID=your-google-client-id
 AUTH_OIDC_CLIENT_SECRET=your-google-client-secret
 AUTH_SESSION_MAX_AGE_MS=2592000000
 ```
+
+`AUTH_OIDC_PROVIDER=google` is the default — you can omit it if you don't plan to switch providers.
 
 If the app is mounted under a subpath:
 
@@ -112,6 +115,8 @@ AUTH_OIDC_CLIENT_ID=your-google-client-id \
 AUTH_OIDC_CLIENT_SECRET=your-google-client-secret \
 collabmd /path/to/vault --auth oidc --no-tunnel
 ```
+
+> **Azure / Microsoft Entra ID?** See [[azure-oidc-setup.md]] for the Azure SSO guide.
 
 ## 8. Optional access restrictions
 
@@ -143,7 +148,7 @@ When CollabMD starts successfully with OIDC, startup should show the public URL 
 Example:
 
 ```text
-Auth:   oidc (google)
+Auth:   oidc (Google)
 Public: https://notes.example.com
 Callback: https://notes.example.com/api/auth/oidc/callback
 Tunnel: disabled (OIDC requires a stable PUBLIC_BASE_URL)

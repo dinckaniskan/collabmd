@@ -63,7 +63,7 @@ if (values.help) {
 
 const port = parseInt(values.port ?? process.env.PORT ?? '1234', 10) || 1234;
 const host = values.host || process.env.HOST || '127.0.0.1';
-const enableTunnel = !values['no-tunnel'];
+let enableTunnel = !values['no-tunnel'];
 const useLocalPlantUml = values['local-plantuml'];
 
 const { resolveCliVaultDir, loadConfig } = await import('../src/server/config/env.js');
@@ -196,7 +196,13 @@ try {
       console.log('          Generated for this host run only');
     }
   } else if (config.auth.strategy === 'oidc') {
-    console.log('  Auth:   oidc (not implemented yet)');
+    const oidcProvider = config.auth.oidc?.provider ?? 'google';
+    const providerLabel = oidcProvider === 'azure' ? 'Microsoft' : 'Google';
+    console.log(`  Auth:   oidc (${providerLabel})`);
+    console.log(`  Public: ${config.auth.oidc.publicBaseUrl}`);
+    console.log(`  Callback: ${config.auth.oidc.callbackUrl}`);
+    console.log('  Tunnel: disabled (OIDC requires a stable PUBLIC_BASE_URL)');
+    enableTunnel = false;
   } else {
     console.log('  Auth:   none');
   }

@@ -123,7 +123,8 @@
   transform: none;
 }
 
-.auth-gate-button--google {
+.auth-gate-button--google,
+.auth-gate-button--azure {
   background: var(--color-surface-raised);
   color: var(--color-text);
   border-color: var(--color-border);
@@ -132,7 +133,8 @@
     var(--shadow-sheet-inset);
 }
 
-.auth-gate-button--google:hover {
+.auth-gate-button--google:hover,
+.auth-gate-button--azure:hover {
   background: var(--surface-overlay-soft);
 }
 

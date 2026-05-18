@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "files": {
+    "src/server/auth/auth-strategies.js": {
+      "latest": {
+        "commit": "c86f16b",
+        "timestamp": "2026-05-18T02:10:21.374Z",
+        "mi": 20.4,
+        "cognitive": 63,
+        "nesting": 4,
+        "lines": 280,
+        "maxCyclomatic": 41,
+        "entropy": 6.51
+      },
+      "history": [
+        {
+          "commit": "c86f16b",
+          "timestamp": "2026-05-18T02:10:21.374Z",
+          "mi": 20.4,
+          "cognitive": 63,
+          "nesting": 4,
+          "lines": 280,
+          "maxCyclomatic": 41,
+          "entropy": 6.51
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/server/auth/auth-common.js": {
+      "latest": {
+        "commit": "c86f16b",
+        "timestamp": "2026-05-18T02:10:51.125Z",
+        "mi": 25.3,
+        "cognitive": 75,
+        "nesting": 4,
+        "lines": 190,
+        "maxCyclomatic": 16,
+        "entropy": 6.28
+      },
+      "history": [
+        {
+          "commit": "c86f16b",
+          "timestamp": "2026-05-18T02:10:51.125Z",
+          "mi": 25.3,
+          "cognitive": 75,
+          "nesting": 4,
+          "lines": 190,
+          "maxCyclomatic": 16,
+          "entropy": 6.28
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/client/infrastructure/auth-client.js": {
+      "latest": {
+        "commit": "c86f16b",
+        "timestamp": "2026-05-18T02:12:19.263Z",
+        "mi": 20,
+        "cognitive": 73,
+        "nesting": 7,
+        "lines": 289,
+        "maxCyclomatic": 23,
+        "entropy": 5.98
+      },
+      "history": [
+        {
+          "commit": "c86f16b",
+          "timestamp": "2026-05-18T02:12:19.263Z",
+          "mi": 20,
+          "cognitive": 73,
+          "nesting": 7,
+          "lines": 289,
+          "maxCyclomatic": 23,
+          "entropy": 5.98
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/client/application/app-shell/ui-feature-identity.js": {
+      "latest": {
+        "commit": "c86f16b",
+        "timestamp": "2026-05-18T02:12:31.732Z",
+        "mi": 38.8,
+        "cognitive": 57,
+        "nesting": 2,
+        "lines": 145,
+        "maxCyclomatic": 23,
+        "entropy": 5.85
+      },
+      "history": [
+        {
+          "commit": "c86f16b",
+          "timestamp": "2026-05-18T02:12:31.732Z",
+          "mi": 38.8,
+          "cognitive": 57,
+          "nesting": 2,
+          "lines": 145,
+          "maxCyclomatic": 23,
+          "entropy": 5.85
+        }
+      ],
+      "trend": "stable"
+    },
+    "bin/collabmd.js": {
+      "latest": {
+        "commit": "c86f16b",
+        "timestamp": "2026-05-18T02:12:48.931Z",
+        "mi": 24.9,
+        "cognitive": 60,
+        "nesting": 4,
+        "lines": 205,
+        "maxCyclomatic": 8,
+        "entropy": 6.64
+      },
+      "history": [
+        {
+          "commit": "c86f16b",
+          "timestamp": "2026-05-18T02:12:48.931Z",
+          "mi": 24.9,
+          "cognitive": 60,
+          "nesting": 4,
+          "lines": 205,
+          "maxCyclomatic": 8,
+          "entropy": 6.64
+        }
+      ],
+      "trend": "stable"
+    },
+    "tests/node/authentication.test.js": {
+      "latest": {
+        "commit": "c86f16b",
+        "timestamp": "2026-05-18T02:13:37.100Z",
+        "mi": 10.4,
+        "cognitive": 88,
+        "nesting": 5,
+        "lines": 674,
+        "maxCyclomatic": 57,
+        "entropy": 7.19
+      },
+      "history": [
+        {
+          "commit": "c86f16b",
+          "timestamp": "2026-05-18T02:13:37.100Z",
+          "mi": 10.4,
+          "cognitive": 88,
+          "nesting": 5,
+          "lines": 674,
+          "maxCyclomatic": 57,
+          "entropy": 7.19
+        }
+      ],
+      "trend": "stable"
+    },
+    "src/server/startup/git-remote-bootstrap.js": {
+      "latest": {
+        "commit": "c86f16b",
+        "timestamp": "2026-05-18T04:35:50.817Z",
+        "mi": 17.6,
+        "cognitive": 93,
+        "nesting": 5,
+        "lines": 369,
+        "maxCyclomatic": 11,
+        "entropy": 6.42
+      },
+      "history": [
+        {
+          "commit": "c86f16b",
+          "timestamp": "2026-05-18T04:35:50.817Z",
+          "mi": 17.6,
+          "cognitive": 93,
+          "nesting": 5,
+          "lines": 369,
+          "maxCyclomatic": 11,
+          "entropy": 6.42
+        }
+      ],
+      "trend": "stable"
+    }
+  },
+  "capturedAt": "2026-05-18T04:35:55.817Z"
+}

@@ -9,6 +9,11 @@ import {
   createRandomAuthPassword,
   createRandomSessionSecret,
 } from '../auth/create-auth-service.js';
+import {
+  OIDC_PROVIDER_AZURE,
+  OIDC_PROVIDER_GOOGLE,
+  SUPPORTED_OIDC_PROVIDERS,
+} from '../auth/auth-constants.js';
 import { loadBuildInfo } from './build-info.js';
 import { isPerfLoggingEnabled } from './perf-logging.js';
 
@@ -117,6 +122,37 @@ function normalizeAuthStrategy(rawStrategy) {
   return normalized;
 }
 
+function normalizeOidcProvider(rawValue) {
+  const normalized = String(rawValue ?? OIDC_PROVIDER_GOOGLE).trim().toLowerCase();
+  if (!SUPPORTED_OIDC_PROVIDERS.has(normalized)) {
+    throw new Error(
+      `Unsupported OIDC provider "${rawValue}". Supported values: ${Array.from(SUPPORTED_OIDC_PROVIDERS).join(', ')}`,
+    );
+  }
+
+  return normalized;
+}
+
+function resolveOidcIssuer(provider, explicitIssuer, tenantId) {
+  if (explicitIssuer) {
+    return explicitIssuer;
+  }
+
+  if (provider === OIDC_PROVIDER_GOOGLE) {
+    return 'https://accounts.google.com';
+  }
+
+  if (provider === OIDC_PROVIDER_AZURE) {
+    if (!tenantId) {
+      throw new Error('OIDC auth with Azure requires AUTH_OIDC_TENANT_ID.');
+    }
+
+    return `https://login.microsoftonline.com/${tenantId}/v2.0`;
+  }
+
+  return explicitIssuer;
+}
+
 function normalizeCsvList(value) {
   if (Array.isArray(value)) {
     return value
@@ -221,6 +257,10 @@ function loadGitConfig(overrides = {}) {
 }
 
 function loadOidcConfig(overrides = {}, { basePath = '' } = {}) {
+  const provider = normalizeOidcProvider(
+    overrides.provider
+    ?? process.env.AUTH_OIDC_PROVIDER,
+  );
   const clientId = normalizeOptionalString(
     overrides.clientId
     ?? process.env.AUTH_OIDC_CLIENT_ID,
@@ -233,10 +273,15 @@ function loadOidcConfig(overrides = {}, { basePath = '' } = {}) {
     overrides.publicBaseUrl
     ?? process.env.PUBLIC_BASE_URL,
   );
-  const issuer = normalizeOptionalString(
+  const explicitIssuer = normalizeOptionalString(
     overrides.issuer
     ?? process.env.AUTH_OIDC_ISSUER_URL,
-  ) || 'https://accounts.google.com';
+  );
+  const tenantId = normalizeOptionalString(
+    overrides.tenantId
+    ?? process.env.AUTH_OIDC_TENANT_ID,
+  );
+  const issuer = resolveOidcIssuer(provider, explicitIssuer, tenantId);
   const flowCookieName = normalizeOptionalString(
     overrides.flowCookieName
     ?? process.env.AUTH_OIDC_FLOW_COOKIE_NAME,
@@ -268,8 +313,9 @@ function loadOidcConfig(overrides = {}, { basePath = '' } = {}) {
     clientSecret,
     flowCookieName,
     issuer,
-    provider: 'google',
+    provider,
     publicBaseUrl,
+    tenantId: tenantId || null,
   };
 }
 

@@ -5,6 +5,7 @@ import * as oidc from 'openid-client';
 import {
   AUTH_STRATEGY_OIDC,
   AUTH_STRATEGY_PASSWORD,
+  OIDC_PROVIDER_GOOGLE,
   OIDC_FLOW_TTL_MS,
 } from './auth-constants.js';
 import {
@@ -15,6 +16,7 @@ import {
   hashPassword,
   isNonEmptyString,
   isOidcUserAllowed,
+  oidcProviderLabel,
   readAuthenticatedOidcSession,
   resolveSessionExpiresAt,
   sanitizeReturnTo,
@@ -178,16 +180,22 @@ export function createOidcStrategy(authConfig, sessionCookieManager, flowCookieM
       const codeChallenge = await oidc.calculatePKCECodeChallenge(codeVerifier);
       const nonce = oidc.randomNonce();
       const state = oidc.randomState();
-      const redirectTo = oidc.buildAuthorizationUrl(config, {
+      const authParams = {
         code_challenge: codeChallenge,
         code_challenge_method: 'S256',
-        ...(authConfig.oidc.allowedDomains.length === 1 ? { hd: authConfig.oidc.allowedDomains[0] } : {}),
         nonce,
         redirect_uri: authConfig.oidc.callbackUrl,
         response_type: 'code',
         scope: 'openid email profile',
         state,
-      });
+      };
+
+      /* Google-specific: add hosted-domain hint when exactly one domain is configured */
+      if (authConfig.oidc.provider === OIDC_PROVIDER_GOOGLE && authConfig.oidc.allowedDomains.length === 1) {
+        authParams.hd = authConfig.oidc.allowedDomains[0];
+      }
+
+      const redirectTo = oidc.buildAuthorizationUrl(config, authParams);
 
       return createResponse(302, null, {
         kind: 'redirect',
@@ -237,14 +245,22 @@ export function createOidcStrategy(authConfig, sessionCookieManager, flowCookieM
         });
         const claims = tokens.claims();
 
+        /* Azure AD may omit `name` — fall back to given_name + family_name */
+        const displayName = claims.name
+          || `${claims.given_name ?? ''} ${claims.family_name ?? ''}`.trim()
+          || '';
+
+        /* Azure AD may omit email_verified — trust it if the claim is present */
+        const emailVerified = claims.email_verified === true || claims.email_verified === undefined;
+
         if (
           !claims
           || !isNonEmptyString(claims.sub)
           || !isNonEmptyString(claims.email)
-          || claims.email_verified !== true
-          || !isNonEmptyString(claims.name)
+          || !emailVerified
+          || !isNonEmptyString(displayName)
         ) {
-          return createErrorRedirect(req, 'Google account is missing a verified email or name.', flowPayload);
+          return createErrorRedirect(req, 'Account is missing a verified email or name.', flowPayload);
         }
 
         const accessDecision = isOidcUserAllowed(authConfig.oidc, claims.email);
@@ -263,7 +279,7 @@ export function createOidcStrategy(authConfig, sessionCookieManager, flowCookieM
         const user = {
           email: claims.email,
           emailVerified: true,
-          name: claims.name,
+          name: displayName,
           picture: typeof claims.picture === 'string' ? claims.picture : '',
           sub: claims.sub,
         };
@@ -282,8 +298,9 @@ export function createOidcStrategy(authConfig, sessionCookieManager, flowCookieM
           ],
         });
       } catch (error) {
+        const providerLabel = oidcProviderLabel(authConfig.oidc.provider);
         console.error('[auth] OIDC callback failed:', error.message);
-        return createErrorRedirect(req, 'Google sign-in failed. Try again.', flowPayload);
+        return createErrorRedirect(req, `${providerLabel} sign-in failed. Try again.`, flowPayload);
       }
     },
 
